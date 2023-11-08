@@ -221,10 +221,27 @@ class HelloWorldTitleOnlyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Text(
-    title,
-    textDirection: TextDirection.ltr,
-    style: const TextStyle(color: Colors.black, fontSize: 40),
-  );
+        title,
+        textDirection: TextDirection.ltr,
+        style: const TextStyle(color: Colors.black, fontSize: 40),
+      );
 }
 
 /// վերևում գրածիս մենք հասկանում ենք, որ ահավոր վատ ա 4 layer փոխանցել title ը, որ հասնի ընդեղ որտեղ որ պետք ա!
+/// inheritedWidget ը լուծում է հենց այս խնդիրը:
+/// նայենք հաջորդ օրինակին:
+
+class TitleProvider extends InheritedWidget {
+  final String title;
+  @override
+  final Widget child;
+
+  const TitleProvider({super.key, required this.title, required this.child})
+      : super(child: child);
+
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) {
+    throw UnimplementedError();
+  }
+  //31:41
+}
