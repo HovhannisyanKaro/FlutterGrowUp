@@ -69,6 +69,7 @@ class MyOwnWidgetState extends State<MyOwnWidget> {
 /// և հետո, աշխատում ա երբ վերևի widget ներից, որոնցից կախում ունի, ինչ որ ծանուցում ա ստանում։
 ///    ( StatefullWidget ը կարող է կախծավություն ունենալ ուրիշ widget ներից, որոնք գտնվում են ծառում ավելի վերև
 ///    և երբ իրենց ((վերևի widget ներում)) փոփոխվում են տվյալներ, կանչվում է didChangeDependencies state ի lifecycle ում)
+/// didChangeDependencies ում արդեն հասանելիություն ունենք context ին.
 ///
 /// didUpdateWidget
 /// ամեն անգամ երբ state ի համախատասխան widget ը update ա լինում։
