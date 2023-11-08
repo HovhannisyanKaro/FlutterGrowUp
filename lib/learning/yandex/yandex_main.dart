@@ -62,6 +62,7 @@ class MyOwnWidgetState extends State<MyOwnWidget> {
 /// initState
 /// աշխատում ա մեկ անգամ ինիցիալիզացիայի ժամանակ.
 /// աշխատում ա միանգամից state ի օբյեկտ ստեղծվելուց հետո
+/// կարևոր ա իմանալ նաև, որ initState ում մենք դոստուպ չունենք context ին.
 ///
 /// didChangeDependencies
 /// մի անգամ աշխատում ա միանգամից initState ից հետո
