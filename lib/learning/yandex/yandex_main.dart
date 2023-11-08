@@ -102,6 +102,10 @@ class _StatefulLifecycleState extends State<StatefulLifecycle> {
     super.initState();
     print('initState');
     _isShapeCircle = false;
+    /**
+     * Ներքևի կոդով կարեղ ենք callback ստանալ միանգամից հենց առաջին frame ը նկարվի վերացնի.
+     */
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) { });
   }
 
   @override
