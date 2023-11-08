@@ -243,5 +243,6 @@ class TitleProvider extends InheritedWidget {
   bool updateShouldNotify(covariant InheritedWidget oldWidget) {
     throw UnimplementedError();
   }
-  //31:41
+//31:41 գրելը
+//43:13 նայելը
 }
