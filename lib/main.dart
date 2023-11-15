@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertest/learning/demo/main.dart';
 import 'package:fluttertest/main_stafeull_widget_input_widget_button_pressed.dart';
 
 import 'main_list_view.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const GambleHomePage(),
     );
   }
 }
