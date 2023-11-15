@@ -22,7 +22,6 @@ class GambleApp extends StatelessWidget {
   }
 }
 
-
 class GambleHomePage extends StatefulWidget {
   const GambleHomePage({super.key});
 
@@ -31,13 +30,56 @@ class GambleHomePage extends StatefulWidget {
 }
 
 class _GambleHomePageState extends State<GambleHomePage> {
+  int _selectedIndex = 0;
+
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+
+  static const List<Widget> _widgetOptions = <Widget>[
+    Text(
+      'TOP',
+      style: optionStyle,
+    ),
+    Text(
+      'Sport',
+      style: optionStyle,
+    ),
+    Text(
+      'Casino',
+      style: optionStyle,
+    ),
+    Text(
+      'More',
+      style: optionStyle,
+    )
+  ];
+
+  void onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text("Hello From Hovhannisyan Karo"),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('AppBarTitle'),
+      ),
+      body: const Center(),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'TOP'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.sports_volleyball), label: 'Sport'),
+          BottomNavigationBarItem(icon: Icon(Icons.casino), label: 'Casino'),
+          BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: 'More'),
+        ],
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.red,
+        unselectedItemColor: Colors.black,
+        onTap: onItemTapped,
       ),
     );
   }
 }
-
