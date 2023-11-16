@@ -195,7 +195,36 @@ class AnimatedNavBarState extends State<AnimatedNavBar>
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return AnimatedBuilder(
+        animation: animation,
+        builder: (BuildContext buildContext, Widget? child) {
+          return Transform.translate(
+            offset: Offset(0, animation.value),
+            child: Container(
+              decoration: BoxDecoration(boxShadow: [
+                BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 12,
+                    spreadRadius: 2,
+                    offset: const Offset(2, -2))
+              ]),
+              child: BottomNavigationBar(
+                type: BottomNavigationBarType.shifting,
+                currentIndex: widget.model._index,
+                onTap: (x) {
+                  widget.onItemTaped(x);
+                },
+                elevation: 16.0,
+                showUnselectedLabels: true,
+                unselectedItemColor: Colors.white54,
+                selectedItemColor: Colors.white,
+                items: widget.menuItems
+                    .map((MenuItem item) => BottomNavigationBarItem(
+                        icon: Icon(item.iconData), label: item.text))
+                    .toList(),
+              ),
+            ),
+          );
+        });
   }
 }
