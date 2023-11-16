@@ -32,28 +32,6 @@ class GambleHomePage extends StatefulWidget {
 class _GambleHomePageState extends State<GambleHomePage> {
   int _selectedIndex = 0;
 
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'TOP',
-      style: optionStyle,
-    ),
-    Text(
-      'Sport',
-      style: optionStyle,
-    ),
-    Text(
-      'Casino',
-      style: optionStyle,
-    ),
-    Text(
-      'More',
-      style: optionStyle,
-    )
-  ];
-
   void onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -81,5 +59,16 @@ class _GambleHomePageState extends State<GambleHomePage> {
         onTap: onItemTapped,
       ),
     );
+  }
+}
+
+class BottomNavigationBarWidget extends StatelessWidget {
+  
+  const BottomNavigationBarWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
   }
 }
