@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertest/learning/demo/main.dart';
-import 'package:fluttertest/main_stafeull_widget_input_widget_button_pressed.dart';
 
+import 'learning/demo_bottom_tab/main.dart';
 import 'main_list_view.dart';
 
 void main() {
