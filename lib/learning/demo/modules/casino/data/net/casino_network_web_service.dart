@@ -11,7 +11,7 @@ abstract class CasinoNetworkWebService {
   factory CasinoNetworkWebService(Dio dio, {String baseUrl}) = _CasinoNetworkWebService;
 
   @GET('/casino/getGames?')
-  Future<Response<CasinoGamesResponse?>> getGames({
+  Future<CasinoGamesResponse?> getGames({
     @Query('partner_id') int partnerId = 1,
     @Query('lang') String eng = 'eng',
     @Query('is_mobile') int isMobile = 1,
