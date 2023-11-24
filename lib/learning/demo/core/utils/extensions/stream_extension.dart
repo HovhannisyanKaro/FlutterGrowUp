@@ -6,7 +6,7 @@ extension StreamExtension<T> on Stream<T> {
     late StreamSubscription<T> subscription;
 
     subscription = listen(
-          (data) {
+      (data) {
         completer.complete(data);
       },
       onError: (error) {
@@ -15,8 +15,7 @@ extension StreamExtension<T> on Stream<T> {
       },
       onDone: () {
         if (!completer.isCompleted) {
-          completer.completeError(
-              Stream.error('Stream completed without emitting any value.'));
+          completer.completeError(Stream.error('Stream completed without emitting any value.'));
         }
       },
       cancelOnError: true,
