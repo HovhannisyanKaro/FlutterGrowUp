@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -64,9 +66,14 @@ class NetworkResource<T> extends Equatable {
   @override
   List<Object?> get props => [status, error, data];
 
-  factory NetworkResource.success(T? data) => NetworkResource(status: Status.success, data: data);
-  factory NetworkResource.error(Exception error, T? data) => NetworkResource(status: Status.error, data: data, error: error);
-  factory NetworkResource.loading() => const NetworkResource(status: Status.loading);
+  factory NetworkResource.success(T? data) =>
+      NetworkResource(status: Status.success, data: data);
+
+  factory NetworkResource.error(Exception error, T? data) =>
+      NetworkResource(status: Status.error, data: data, error: error);
+
+  factory NetworkResource.loading() =>
+      const NetworkResource(status: Status.loading);
 }
 
 enum Status { success, error, loading }
@@ -131,32 +138,32 @@ abstract class _JsonKey {
 }
 
 class NetworkBoundResource<ResultType, RequestType> {
-  Future<ResultType?> fetchFromStorage() async{
+  Future<ResultType?> fetchFromStorage() async {
     return null;
   }
 
-  bool shouldFetch(ResultType? result){
+  bool shouldFetch(ResultType? result) {
     return true;
   }
 
-  Future<RequestType?> fetchFromNetwork() async{
+  Future<RequestType?> fetchFromNetwork() async {
     return null;
   }
 
-  Future<void> saveNetworkResult(ResultType? result) async{}
+  Future<void> saveNetworkResult(ResultType? result) async {}
 
   Exception? isError(RequestType? request) {
     return null;
   }
 
-  ResultType? processResponse(ResultType? result, RequestType? request){
+  ResultType? processResponse(ResultType? result, RequestType? request) {
     return null;
   }
 
   void processErrorResponse(Exception? exception) {}
 
   Stream<NetworkResource<ResultType>> run() async* {
-    yield(NetworkResource<ResultType>.loading());
+    yield (NetworkResource<ResultType>.loading());
 
     final storageValue = await fetchFromStorage();
     final fetch = shouldFetch(storageValue);
@@ -177,6 +184,31 @@ class NetworkBoundResource<ResultType, RequestType> {
     } else {
       result = NetworkResource.success(storageValue);
     }
-    yield(result);
+    yield (result);
+  }
+}
+
+extension StreamExtension<T> on Stream<T> {
+  Future<T> asFuture() {
+    final completer = Completer<T>();
+    late StreamSubscription<T> subscription;
+
+    subscription = listen(
+      (data) {
+        completer.complete(data);
+      },
+      onError: (error) {
+        completer.completeError(error);
+        subscription.cancel();
+      },
+      onDone: () {
+        if (!completer.isCompleted) {
+          completer.completeError(
+              Stream.error('Stream completed without emitting any value.'));
+        }
+      },
+      cancelOnError: true,
+    );
+    return completer.future;
   }
 }
