@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:fluttertest/learning/api/retrofit/api_service.dart';
+
+import '../api/retrofit/api_service.dart';
 
 class MySingleton {
   MySingleton._();

@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import 'learning/api/retrofit/api_service.dart';
 
 void main() {
   runApp(const MyApp());
