@@ -137,7 +137,7 @@ abstract class _JsonKey {
   static const String response = 'response';
 }
 
-class NetworkBoundResource<ResultType, RequestType> {
+abstract class NetworkBoundResource<ResultType, RequestType> {
   Future<ResultType?> fetchFromStorage() async {
     return null;
   }
