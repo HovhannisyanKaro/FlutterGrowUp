@@ -1,9 +1,9 @@
 import 'package:fluttertest/learning/demo/core/utils/extensions/stream_extension.dart';
 import 'package:fluttertest/learning/demo/modules/casino/repository/repository.dart';
+import 'package:fluttertest/learning/demo/modules/casino/repository/resource/network_bounds_resource_get_games.dart';
 
 import '../../../core/utils/network_resource.dart';
 import '../data/net/casino_network_adapter.dart';
-import 'bounds/network_bounds_resource_get_games.dart';
 
 class CasinoRepositoryImpl implements CasinoRepository {
   final _port = CasinoNetworkAdapter();
