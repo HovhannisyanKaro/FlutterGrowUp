@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:fluttertest/learning/demo/modules/casino/configurations/app_constants.dart';
-import 'package:retrofit/http.dart';
+import 'package:retrofit/retrofit.dart';
 
 import '../../../../../draft/api/retrofit/demo/casino_games_response.dart';
 
@@ -10,10 +10,19 @@ part 'casino_network_web_service.g.dart';
 abstract class CasinoNetworkWebService {
   factory CasinoNetworkWebService(Dio dio, {String baseUrl}) = _CasinoNetworkWebService;
 
+  // @GET('/casino/getGames?')
+  // Future<CasinoGamesResponse?> getGames({
+  //   @Query('partner_id') int partnerId = 1,
+  //   @Query('lang') String eng = 'eng',
+  //   @Query('is_mobile') int isMobile = 1,
+  //   @Query('country') String country = 'AM',
+  //   @Query('limit') int limit = 4,
+  // });
+
   @GET('/casino/getGames?')
-  Future<CasinoGamesResponse?> getGames({
+  Future<HttpResponse<CasinoGamesResponse?>> getGamesHttp({
     @Query('partner_id') int partnerId = 1,
-    @Query('lang') String eng = 'eng',
+    @Query('lang') String lang = 'eng',
     @Query('is_mobile') int isMobile = 1,
     @Query('country') String country = 'AM',
     @Query('limit') int limit = 4,

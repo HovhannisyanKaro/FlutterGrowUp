@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:retrofit/retrofit.dart';
 
 sealed class ApiWrapper<T> extends Equatable {
   @override
@@ -61,7 +62,7 @@ class UnknownError extends ApiWrapper<Never> {
 ///  I am not connected to any network.
 ///
 /// }
-Future<ApiWrapper<T>> parseResponse<T>(Response<T?> response) async {
+Future<ApiWrapper<T>> parseResponse<T>(HttpResponse<T?> response) async {
   //todo ստեղ պետք ա մեթոդ փոխանցոեմ պարամետրով, call ը հենց ստեղ կազմակերպեմ ու retrofit ի request ից հետո կանչեմ
   //todo then https://pub.dev/packages/retrofit errorHandling ի համար։
   try {
@@ -71,9 +72,12 @@ Future<ApiWrapper<T>> parseResponse<T>(Response<T?> response) async {
       return NetworkError();
     }
 
-    final statusCode = response.statusCode;
-    final body = response.data;
-    final extra = response.extra;
+    final httpResponse = response.response;
+
+    final statusCode = httpResponse.statusCode;
+    final body = httpResponse.data;
+    final extra = httpResponse.extra;
+    // httpResponse.
 
     final bool isSuccessful = statusCode == 200;
     if (isSuccessful) {

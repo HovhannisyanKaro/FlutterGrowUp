@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
+import 'learning/demo/core/utils/api_wrapper.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,19 +40,60 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  // late Future<String> futureStringCasinoGames ;
-
   @override
   void initState() {
     super.initState();
-    // futureStringCasinoGames = fetchCasinoGames();
-    // print('HK_LOG, casinoGamesResponse: $futureStringCasinoGames');
+    // testSwitchWithGenericTypeOfSealed();
+    testSwitchWithGenericTypeOfSealedWithGeneric<String>(Success<String>(value: ''));
   }
 
   void _incrementCounter() {
     setState(() {
       _counter++;
     });
+  }
+
+  void testSwitchWithGenericTypeOfSealed() {
+    final successSealedSub = Success<String>(value: '');
+
+    switch (successSealedSub) {
+      case Success<String>():
+        {
+          print('HK_LOG: CASE_SUCCESS');
+          break;
+        }
+      default:
+        {
+          print('HK_LOG: CASE_DEFAULT');
+          break;
+        }
+
+        final value = switch (successSealedSub) {
+          Success<String>() => null,
+        };
+    }
+  }
+
+  void testSwitchWithGenericTypeOfSealedWithGeneric<T>(ApiWrapper apiWrapper) {
+    // final successSealedSub = Success<String>(value: '');
+
+    switch (apiWrapper) {
+      case Success<T>():
+        {
+          print('HK_LOG: CASE_SUCCESS');
+          break;
+        }
+      default:
+        {
+          print('HK_LOG: CASE_DEFAULT');
+          break;
+        }
+    }
+
+    final value = switch (apiWrapper) {
+      Success<String>() => null,
+      _ => null,
+    };
   }
 
   @override

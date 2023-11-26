@@ -1,6 +1,7 @@
 import 'network_resource.dart';
 
 abstract class NetworkBoundResource<ResultType, RequestType> {
+
   Future<ResultType?> fetchFromStorage() async {
     return null;
   }
@@ -15,11 +16,11 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
   Future<void> saveNetworkResult(ResultType? result) async {}
 
-  Exception? isError(RequestType? request) {
+  Exception? isError(RequestType? response) {
     return null;
   }
 
-  ResultType? processResponse(ResultType? result, RequestType? request) {
+  ResultType? processResponse(ResultType? data, RequestType? response) {
     return null;
   }
 
