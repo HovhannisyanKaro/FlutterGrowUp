@@ -46,6 +46,6 @@ class GetGamesNetworkBoundResource extends NetworkBoundResource<String, ApiWrapp
 
   @override
   Future<ApiWrapper<CasinoGamesResponse>?> fetchFromNetwork() {
-    return _port.getGamesHttp(partnerId: partnerId, lang: lang, isMobile: isMobile, country: country, limit: limit);
+    return _port.getGames(partnerId: partnerId, lang: lang, isMobile: isMobile, country: country, limit: limit);
   }
 }
