@@ -1,3 +1,3 @@
-abstract interface class BaseEvent{
+abstract class BaseEvent{
   //TODO('use part of')
 }

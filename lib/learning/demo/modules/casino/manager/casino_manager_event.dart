@@ -1,6 +1,6 @@
 import '../../../core/manager/base_event.dart';
 
-sealed class CasinoManagerEvent implements BaseEvent {
+sealed class CasinoManagerEvent extends BaseEvent {
   //TODO('use part of')
 }
 
