@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
+import 'package:fluttertest/learning/demo/core/utils/network/network_state_manager.dart';
 import 'package:retrofit/retrofit.dart';
 
 sealed class ApiWrapper<T> extends Equatable {
@@ -66,9 +67,8 @@ Future<ApiWrapper<T>> parseResponse<T>(HttpResponse<T?> response) async {
   //todo ստեղ պետք ա մեթոդ փոխանցոեմ պարամետրով, call ը հենց ստեղ կազմակերպեմ ու retrofit ի request ից հետո կանչեմ
   //todo then https://pub.dev/packages/retrofit errorHandling ի համար։
   try {
-    final connectivityResult = await (Connectivity().checkConnectivity());
 
-    if (connectivityResult == ConnectivityResult.none) {
+    if(await NetworkStateManager().isNetworkAvailable()){
       return NetworkError();
     }
 
