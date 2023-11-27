@@ -2,6 +2,14 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 
+sealed class NetworkState {}
+
+class ChangedState extends NetworkState {
+  bool isOnline;
+
+  ChangedState({required this.isOnline});
+}
+
 final class NetworkStateManager {
   final StreamController<NetworkState> _states = StreamController(sync: true);
 
@@ -40,12 +48,4 @@ final class NetworkStateManager {
   void close() {
     _states.close();
   }
-}
-
-sealed class NetworkState {}
-
-class ChangedState extends NetworkState {
-  bool isOnline;
-
-  ChangedState({required this.isOnline});
 }
