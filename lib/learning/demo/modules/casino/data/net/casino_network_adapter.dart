@@ -11,7 +11,7 @@ class CasinoNetworkAdapter implements CasinoNetworkPort {
 
   factory CasinoNetworkAdapter() => _instance;
 
-  final _port = CasinoNetworkClient().port;
+  final _client = CasinoNetworkClient().port;
 
   @override
   Future<ApiWrapper<CasinoGamesResponse>> getGames({
@@ -21,7 +21,7 @@ class CasinoNetworkAdapter implements CasinoNetworkPort {
     String country = 'AM',
     int limit = 4,
   }) async {
-    final result = await _port.getGames(partnerId: partnerId, lang: lang, isMobile: isMobile, country: country, limit: limit);
+    final result = await _client.getGames(partnerId: partnerId, lang: lang, isMobile: isMobile, country: country, limit: limit);
     return parseResponse(result);
   }
 }

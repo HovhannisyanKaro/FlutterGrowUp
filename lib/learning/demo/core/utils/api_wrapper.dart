@@ -78,7 +78,7 @@ Future<ApiWrapper<T>> parseResponse<T>(HttpResponse<T?> response) async {
     final body = httpResponse.data;
     final extra = httpResponse.extra;
     // httpResponse.
-
+    //TODO (success -> >=200 <=299)
     final bool isSuccessful = statusCode == 200;
     if (isSuccessful) {
       return Success(value: body);

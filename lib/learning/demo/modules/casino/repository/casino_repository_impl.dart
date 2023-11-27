@@ -1,5 +1,5 @@
 import 'package:fluttertest/learning/demo/core/utils/extensions/stream_extension.dart';
-import 'package:fluttertest/learning/demo/modules/casino/repository/repository.dart';
+import 'package:fluttertest/learning/demo/modules/casino/repository/casino_repository.dart';
 import 'package:fluttertest/learning/demo/modules/casino/repository/resource/network_bounds_resource_get_games.dart';
 
 import '../../../core/utils/network_resource.dart';
@@ -23,6 +23,6 @@ class CasinoRepositoryImpl implements CasinoRepository {
       isMobile: isMobile,
       country: country,
       limit: limit,
-    ).run().asFuture();
+    )().asFuture(); //Callable object.
   }
 }

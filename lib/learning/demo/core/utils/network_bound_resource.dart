@@ -26,7 +26,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
   void processErrorResponse(Exception? exception) {}
 
-  Stream<NetworkResource<ResultType>> run() async* {
+  Stream<NetworkResource<ResultType>> call() async* {
     yield (NetworkResource<ResultType>.loading());
 
     final storageValue = await fetchFromStorage();
