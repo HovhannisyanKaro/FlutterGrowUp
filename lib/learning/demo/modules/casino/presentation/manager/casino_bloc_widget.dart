@@ -7,9 +7,7 @@ final class CasinoBlocWidget extends BaseBlocWidget<CasinoBlocEvent, CasinoBlocS
 
   @override
   void handleEvent(CasinoBlocEvent event) {
-    switch(event){
-
-    }
+    switch (event) {}
   }
 
   @override
