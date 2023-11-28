@@ -1,6 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'bloc_state.freezed.dart';
 void main() {
   runApp(MaterialApp(
     home: BlocProvider(
@@ -94,4 +97,22 @@ class MyBlocWidget extends StatelessWidget {
       ),
     );
   }
+}
+
+@immutable
+final class SimpleOfState extends Equatable {
+  final int age;
+  final bool isSomethingTrue;
+
+  const SimpleOfState({required this.age, required this.isSomethingTrue});
+
+  @override
+  List<Object?> get props => [age, isSomethingTrue];
+}
+
+
+@freezed
+class SimpleOfStateFreezed with _$SimpleOfStateFreezed{
+
+  const factory SimpleOfStateFreezed({required int age, required bool isSomethingTrue}) = _SimpleOfStateFreezed;
 }
