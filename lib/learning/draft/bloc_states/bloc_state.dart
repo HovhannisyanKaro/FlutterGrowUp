@@ -143,17 +143,6 @@ class SimpleOfStateFreezed with _$SimpleOfStateFreezed {
   const factory SimpleOfStateFreezed({int? age, bool? isSomethingTrue, @Default([]) List<CarHardClass> items}) = _SimpleOfStateFreezed;
 }
 
-class CarHardClassEquatable extends Equatable {
-  String? name;
-  int? year;
-
-  CarHardClassEquatable({this.name, this.year});
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [name, year];
-}
-
 class CarHardClass {
   String? name;
   int? year;
