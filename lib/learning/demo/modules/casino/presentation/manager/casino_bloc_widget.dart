@@ -9,10 +9,4 @@ final class CasinoBlocWidget extends BaseBlocWidget<CasinoBlocEvent, CasinoBlocS
   void handleEvent(CasinoBlocEvent event) {
     switch (event) {}
   }
-
-  @override
-  Future<void> close() {
-    destroy();
-    return super.close();
-  }
 }

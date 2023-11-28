@@ -29,9 +29,9 @@ final class NetworkStateManager {
     _connectivity.onConnectivityChanged.listen((event) {
       switch (event) {
         case ConnectivityResult.none:
-          _updateState(ChangedState(isOnline: true));
-        default:
           _updateState(ChangedState(isOnline: false));
+        default:
+          _updateState(ChangedState(isOnline: true));
       }
     });
   }
