@@ -110,7 +110,6 @@ final class SimpleOfState extends Equatable {
   List<Object?> get props => [age, isSomethingTrue];
 }
 
-
 @freezed
 class SimpleOfStateFreezed with _$SimpleOfStateFreezed{
 
