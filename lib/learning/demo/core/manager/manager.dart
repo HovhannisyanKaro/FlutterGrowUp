@@ -16,7 +16,6 @@ abstract mixin class Manager<Event extends BaseEvent, State extends BaseState> {
   }
 
   @mustCallSuper
-  @nonVirtual
   void addEvent(Event event) {
     _events.add(event);
   }

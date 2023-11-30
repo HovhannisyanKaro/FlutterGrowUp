@@ -1,54 +1,43 @@
-import 'package:fluttertest/learning/demo/core/manager/base_event.dart';
-import 'package:fluttertest/learning/demo/core/manager/base_state.dart';
 import 'package:fluttertest/learning/demo/core/manager/manager.dart';
 
-/// ------------------------------------------------------------
-/// Event
-/// ------------------------------------------------------------
-sealed class BuilderEvent extends BaseEvent {}
+import 'builder_event.dart';
+import 'builder_state.dart';
 
-class InitialEvent extends BuilderEvent {}
-
-class NextEvent extends BuilderEvent {
-  final int position;
-
-  NextEvent({required this.position});
-}
-
-class PreviousEvent extends BuilderEvent {
-  final int position;
-
-  PreviousEvent({required this.position});
-}
-
-class ValueChangeEvent<T> extends BuilderEvent {
-  final int page;
-  final int position;
-  final T value;
-
-  ValueChangeEvent({required this.page, required this.position, required this.value});
-}
-
-/// ------------------------------------------------------------
-/// State
-/// ------------------------------------------------------------
-
-sealed class BuilderState extends BaseState {}
-
-class InitialState extends BuilderState {}
-
-abstract interface class FormElementBuilder<Event extends BuilderEvent> {
+abstract interface class FormElementBuilder {
   late final String pageTitle;
   late final String primaryButtonTitle;
   late final List<List<String>> items;
 
   bool validate();
 
-  void onNewBuilderEvent(Event event);
-
   void performDefinitiveAction();
 
   void clear();
 }
 
-abstract base class AbstractFormElementBuilder<Event extends BuilderEvent, State extends BuilderState> with Manager<Event, State> implements FormElementBuilder<Event> {}
+abstract base class AbstractFormElementBuilder<Event extends BuilderEvent, State extends BuilderState> with Manager<Event, State> implements FormElementBuilder {
+  @override
+  void addEvent(Event event) {
+    switch (event) {
+      case InitialEvent():
+        break;
+      case NextEvent():
+        event.position;
+        break;
+      case PreviousEvent():
+        event.position;
+        break;
+      case ValueChangeEvent():
+        break;
+    }
+    super.addEvent(event);
+  }
+
+  void _initialEvent() {}
+
+  void _nextEvent(NextEvent nextEvent) {}
+
+  void _previousEvent() {}
+
+  void _valueChangeEvent() {}
+}
