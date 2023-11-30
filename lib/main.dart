@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'learning/demo/core/utils/api_wrapper.dart';
+import 'learning/demo/modules/builder/presentation/builder_event.dart';
 
 void main() {
   runApp(const MyApp());
@@ -44,7 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     // testSwitchWithGenericTypeOfSealed();
-    testSwitchWithGenericTypeOfSealedWithGeneric<String>(Success<String>(value: ''));
+    // testSwitchWithGenericTypeOfSealedWithGeneric<String>(Success<String>(value: ''));
+    testForGenericWithSwitch();
   }
 
   void _incrementCounter() {
@@ -94,6 +96,36 @@ class _MyHomePageState extends State<MyHomePage> {
       Success<String>() => null,
       _ => null,
     };
+  }
+
+  void testForGenericWithSwitch() {
+    final eventValueChange = ValueChangeEvent<String>(page: 0, position: 0, value: 'unknown value');
+    switchExample(eventValueChange);
+  }
+
+  void switchExample<Event extends BuilderEvent>(Event event) {
+    switch (event) {
+      case InitialEvent():
+        p('Initial');
+        break;
+      case NextEvent():
+        p('NextEvent');
+
+        break;
+      case PreviousEvent():
+        p('PreviousEvent');
+
+        break;
+      case ValueChangeEvent():
+        final a = event.value;
+        final runtimeType = a.runtimeType;
+        p('ValueChangeEvent: $a, runtimeType: $runtimeType');
+        break;
+    }
+  }
+
+  void p(dynamic value) {
+    print(value);
   }
 
   @override
