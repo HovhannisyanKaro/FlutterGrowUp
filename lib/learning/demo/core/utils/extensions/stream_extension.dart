@@ -2,12 +2,13 @@ import 'dart:async';
 
 extension StreamExtension<T> on Stream<T> {
   Future<T> asFuture() {
+    T? yieldData;
     final completer = Completer<T>();
     late StreamSubscription<T> subscription;
 
     subscription = listen(
       (data) {
-        completer.complete(data);
+        yieldData = data;
       },
       onError: (error) {
         completer.completeError(error);
@@ -15,6 +16,8 @@ extension StreamExtension<T> on Stream<T> {
       },
       onDone: () {
         if (!completer.isCompleted) {
+          completer.complete(yieldData);
+        } else {
           completer.completeError(Stream.error('Stream completed without emitting any value.'));
         }
       },
