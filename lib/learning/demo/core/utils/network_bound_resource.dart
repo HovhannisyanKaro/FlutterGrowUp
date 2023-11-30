@@ -40,7 +40,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
       if (error == null) {
         final processedResponse = processResponse(storageValue, apiResponse);
         await saveNetworkResult(processedResponse);
-        result = NetworkResource.success(storageValue);
+        result = NetworkResource.success(processedResponse);
       } else {
         processErrorResponse(error);
         result = NetworkResource.error(error, null);

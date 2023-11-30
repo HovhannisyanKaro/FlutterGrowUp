@@ -68,7 +68,7 @@ Future<ApiWrapper<T>> parseResponse<T>(HttpResponse<T?> response) async {
   //todo then https://pub.dev/packages/retrofit errorHandling ի համար։
   try {
 
-    if(await NetworkStateManager().isNetworkAvailable()){
+    if(await NetworkStateManager().isNetworkAvailable() == false){
       return NetworkError();
     }
 
