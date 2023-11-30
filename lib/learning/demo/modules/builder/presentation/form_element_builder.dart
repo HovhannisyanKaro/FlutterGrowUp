@@ -2,7 +2,9 @@ import 'package:fluttertest/learning/demo/core/manager/base_event.dart';
 import 'package:fluttertest/learning/demo/core/manager/base_state.dart';
 import 'package:fluttertest/learning/demo/core/manager/manager.dart';
 
-//Event
+/// ------------------------------------------------------------
+/// Event
+/// ------------------------------------------------------------
 sealed class BuilderEvent extends BaseEvent {}
 
 class InitialEvent extends BuilderEvent {}
@@ -27,7 +29,10 @@ class ValueChangeEvent<T> extends BuilderEvent {
   ValueChangeEvent({required this.page, required this.position, required this.value});
 }
 
-//State
+/// ------------------------------------------------------------
+/// State
+/// ------------------------------------------------------------
+
 sealed class BuilderState extends BaseState {}
 
 class InitialState extends BuilderState {}
