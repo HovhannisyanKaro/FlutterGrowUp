@@ -22,12 +22,13 @@ abstract base class AbstractFormElementBuilder<Event extends BuilderEvent, State
       case InitialEvent():
         break;
       case NextEvent():
-        event.position;
+        _nextEvent(event);
         break;
       case PreviousEvent():
         event.position;
         break;
       case ValueChangeEvent():
+        _valueChangeEvent(event);
         break;
     }
     super.addEvent(event);
@@ -35,9 +36,9 @@ abstract base class AbstractFormElementBuilder<Event extends BuilderEvent, State
 
   void _initialEvent() {}
 
-  void _nextEvent(NextEvent nextEvent) {}
+  void _nextEvent(NextEvent event) {}
 
-  void _previousEvent() {}
+  void _previousEvent(PreviousEvent event) {}
 
-  void _valueChangeEvent() {}
+  void _valueChangeEvent(ValueChangeEvent valueChangeEvent) {}
 }
