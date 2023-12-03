@@ -33,12 +33,7 @@ class MenuItem {
   final String text;
 }
 
-Future<void> navigate(BuildContext context, String route,
-        {bool isDialog = false,
-        bool isRootNavigator = true,
-        Map<String, dynamic>? arguments}) =>
-    Navigator.of(context, rootNavigator: isRootNavigator)
-        .pushNamed(route, arguments: arguments);
+Future<void> navigate(BuildContext context, String route, {bool isDialog = false, bool isRootNavigator = true, Map<String, dynamic>? arguments}) => Navigator.of(context, rootNavigator: isRootNavigator).pushNamed(route, arguments: arguments);
 
 final homeKey = GlobalKey<NavigatorState>();
 final productsKey = GlobalKey<NavigatorState>();
@@ -57,8 +52,7 @@ class NavBarHandler extends StatefulWidget {
   State<NavBarHandler> createState() => _NavBarHandlerState();
 }
 
-class _NavBarHandlerState extends State<NavBarHandler>
-    with SingleTickerProviderStateMixin {
+class _NavBarHandlerState extends State<NavBarHandler> with SingleTickerProviderStateMixin {
   final _buildBody = const <Widget>[HomeMenu(), ProductsMenu(), ProfileMenu()];
 
   late List<BottomNavigationBarItem> _bottomList = <BottomNavigationBarItem>[];
@@ -97,8 +91,7 @@ class _NavBarHandlerState extends State<NavBarHandler>
       const SnackBar(
         behavior: SnackBarBehavior.floating,
         duration: Duration(milliseconds: 600),
-        margin: EdgeInsets.only(
-            bottom: kBottomNavigationBarHeight, right: 2, left: 2),
+        margin: EdgeInsets.only(bottom: kBottomNavigationBarHeight, right: 2, left: 2),
         content: Text('Tap back button again to exit'),
       ),
     );
@@ -145,11 +138,7 @@ class _NavBarHandlerState extends State<NavBarHandler>
                 children: [
                   IndexedStack(
                     index: _navbarNotifier.index,
-                    children: [
-                      for (int i = 0; i < _buildBody.length; i++)
-                        FadeTransition(
-                            opacity: fadeAnimation, child: _buildBody[i])
-                    ],
+                    children: [for (int i = 0; i < _buildBody.length; i++) FadeTransition(opacity: fadeAnimation, child: _buildBody[i])],
                   ),
                   Positioned(
                     bottom: 0,
@@ -208,15 +197,13 @@ class NavbarNotifier extends ChangeNotifier {
         }
         break;
       case 1:
-        if (productsKey.currentState != null &&
-            productsKey.currentState!.canPop()) {
+        if (productsKey.currentState != null && productsKey.currentState!.canPop()) {
           productsKey.currentState!.pop();
           exitingApp = false;
         }
         break;
       case 2:
-        if (profileKey.currentState != null &&
-            profileKey.currentState!.canPop()) {
+        if (profileKey.currentState != null && profileKey.currentState!.canPop()) {
           profileKey.currentState!.pop();
           exitingApp = false;
         }
@@ -256,12 +243,7 @@ class NavbarNotifier extends ChangeNotifier {
 }
 
 class AnimatedNavBar extends StatefulWidget {
-  const AnimatedNavBar(
-      {Key? key,
-      required this.model,
-      required this.menuItems,
-      required this.onItemTapped})
-      : super(key: key);
+  const AnimatedNavBar({Key? key, required this.model, required this.menuItems, required this.onItemTapped}) : super(key: key);
   final List<MenuItem> menuItems;
   final NavbarNotifier model;
   final Function(int) onItemTapped;
@@ -270,8 +252,7 @@ class AnimatedNavBar extends StatefulWidget {
   _AnimatedNavBarState createState() => _AnimatedNavBarState();
 }
 
-class _AnimatedNavBarState extends State<AnimatedNavBar>
-    with SingleTickerProviderStateMixin {
+class _AnimatedNavBarState extends State<AnimatedNavBar> with SingleTickerProviderStateMixin {
   @override
   void didUpdateWidget(covariant AnimatedNavBar oldWidget) {
     if (widget.model.hideBottomNavBar != isHidden) {
@@ -298,9 +279,7 @@ class _AnimatedNavBarState extends State<AnimatedNavBar>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-        duration: const Duration(milliseconds: 500), vsync: this)
-      ..addListener(() => setState(() {}));
+    _controller = AnimationController(duration: const Duration(milliseconds: 500), vsync: this)..addListener(() => setState(() {}));
     animation = Tween(begin: 0.0, end: 100.0).animate(_controller);
   }
 
@@ -360,9 +339,7 @@ class HomeMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(
-          colorScheme:
-              Theme.of(context).colorScheme.copyWith(primary: colors[0])),
+      data: ThemeData(colorScheme: Theme.of(context).colorScheme.copyWith(primary: colors[0])),
       child: Navigator(
           key: homeKey,
           initialRoute: '/',
@@ -395,9 +372,7 @@ class ProductsMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(
-          colorScheme:
-              Theme.of(context).colorScheme.copyWith(primary: colors[1])),
+      data: ThemeData(colorScheme: Theme.of(context).colorScheme.copyWith(primary: colors[1])),
       child: Navigator(
           key: productsKey,
           initialRoute: '/',
@@ -438,9 +413,7 @@ class ProfileMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Theme(
-      data: ThemeData(
-          colorScheme:
-              Theme.of(context).colorScheme.copyWith(primary: colors[2])),
+      data: ThemeData(colorScheme: Theme.of(context).colorScheme.copyWith(primary: colors[2])),
       child: Navigator(
           key: profileKey,
           initialRoute: '/',
@@ -481,8 +454,7 @@ class _HomeFeedsState extends State<HomeFeeds> {
 
   void _addScrollListener() {
     _scrollController.addListener(() {
-      if (_scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) {
+      if (_scrollController.position.userScrollDirection == ScrollDirection.forward) {
         if (_navbarNotifier.hideBottomNavBar) {
           _navbarNotifier.hideBottomNavBar = false;
         }
@@ -513,9 +485,7 @@ class _HomeFeedsState extends State<HomeFeeds> {
           return InkWell(
               onTap: () {
                 _navbarNotifier.hideBottomNavBar = false;
-                navigate(context, FeedDetail.route,
-                    isRootNavigator: false,
-                    arguments: {'id': index.toString()});
+                navigate(context, FeedDetail.route, isRootNavigator: false, arguments: {'id': index.toString()});
               },
               child: FeedTile(index: index));
         },
@@ -547,11 +517,7 @@ class FeedTile extends StatelessWidget {
               height: 180,
             ),
           ),
-          Positioned(
-              bottom: 12,
-              right: 12,
-              left: 12,
-              child: Text(placeHolderText.substring(0, 200)))
+          Positioned(bottom: 12, right: 12, left: 12, child: Text(placeHolderText.substring(0, 200)))
         ],
       ),
     );
@@ -608,8 +574,7 @@ class _ProductListState extends State<ProductList> {
 
   void _addScrollListener() {
     _scrollController.addListener(() {
-      if (_scrollController.position.userScrollDirection ==
-          ScrollDirection.forward) {
+      if (_scrollController.position.userScrollDirection == ScrollDirection.forward) {
         if (_navbarNotifier.hideBottomNavBar) {
           _navbarNotifier.hideBottomNavBar = false;
         }
@@ -641,9 +606,7 @@ class _ProductListState extends State<ProductList> {
               child: InkWell(
                   onTap: () {
                     _navbarNotifier.hideBottomNavBar = false;
-                    navigate(context, ProductDetail.route,
-                        isRootNavigator: false,
-                        arguments: {'id': index.toString()});
+                    navigate(context, ProductDetail.route, isRootNavigator: false, arguments: {'id': index.toString()});
                   },
                   child: ProductTile(index: index)),
             );
@@ -703,8 +666,7 @@ class ProductDetail extends StatelessWidget {
           TextButton(
               onPressed: () {
                 _navbarNotifier.hideBottomNavBar = false;
-                navigate(context, ProductComments.route,
-                    isRootNavigator: false, arguments: {'id': id.toString()});
+                navigate(context, ProductComments.route, isRootNavigator: false, arguments: {'id': id.toString()});
               },
               child: const Text('show comments'))
         ],
