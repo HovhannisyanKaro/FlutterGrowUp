@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/bottom_navigation_bar.dart';
 import '../../../../main.dart';
+import '../../../base/presentation/navigation/bottom_navigation_bar.dart';
 import '../../../home/presentation/page/home_page.dart';
 import '../../../profile/presentation/page/profile_page.dart';
 

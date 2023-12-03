@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/navigation.dart';
 import '../../../main/presentation/page/main_page.dart';
 
 class ProductDetail extends StatelessWidget {

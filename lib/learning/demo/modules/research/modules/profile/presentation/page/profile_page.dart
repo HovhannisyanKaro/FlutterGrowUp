@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/presentation/navigation.dart';
-
 class ProfilePage extends StatelessWidget {
   static const String route = '/';
 
