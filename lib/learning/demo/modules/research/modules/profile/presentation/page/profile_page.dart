@@ -16,7 +16,7 @@ class ProfilePage extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.edit),
               onPressed: () {
-                navigate(context, ProfileEdit.route);
+                // navigate(context, ProfileEdit.route);
               },
             )
           ],

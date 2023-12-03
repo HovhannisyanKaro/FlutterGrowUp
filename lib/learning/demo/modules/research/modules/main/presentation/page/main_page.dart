@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/presentation/bottom_navigation_bar.dart';
 import '../../../../main.dart';
+import '../../../home/presentation/page/home_page.dart';
+import '../../../profile/presentation/page/profile_page.dart';
 
 final homeKey = GlobalKey<NavigatorState>();
 final productsKey = GlobalKey<NavigatorState>();
@@ -297,6 +299,111 @@ class _NavBarHandlerState extends State<NavBarHandler> with SingleTickerProvider
               );
             }),
       ),
+    );
+  }
+}
+
+class ProductsMenu extends StatelessWidget {
+  const ProductsMenu({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData(colorScheme: Theme.of(context).colorScheme.copyWith(primary: colors[1])),
+      child: Navigator(
+        key: productsKey,
+        initialRoute: '/',
+        // onGenerateRoute: (RouteSettings settings) {
+        //   WidgetBuilder builder;
+        //   switch (settings.name) {
+        //     case '/':
+        //       builder = (BuildContext _) => const ProductList();
+        //       break;
+        //     // case ProductDetail.route:
+        //     //   final id = (settings.arguments as Map)['id'];
+        //     //   builder = (BuildContext _) {
+        //     //     return ProductDetail(
+        //     //       id: id,
+        //     //     );
+        //     //   };
+        //     //   break;
+        //     // case ProductComments.route:
+        //     //   final id = (settings.arguments as Map)['id'];
+        //     //   builder = (BuildContext _) {
+        //     //     return ProductComments(
+        //     //       id: id,
+        //     //     );
+        //     //   };
+        //     //   break;
+        //     default:
+        //       builder = (BuildContext _) => const ProductList();
+        //   }
+        //   return MaterialPageRoute(builder: builder, settings: settings);
+        // },
+      ),
+    );
+  }
+}
+
+class HomeNavigationMenu extends StatelessWidget {
+  final GlobalKey<NavigatorState> globalKey;
+
+  const HomeNavigationMenu({required this.globalKey, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData(colorScheme: Theme.of(context).colorScheme),
+      child: Navigator(
+          key: globalKey,
+          initialRoute: '/',
+          onGenerateRoute: (RouteSettings settings) {
+            WidgetBuilder builder;
+            switch (settings.name) {
+              case '/':
+                builder = (BuildContext _) => HomeFeeds(_navbarNotifier);
+                break;
+              // case FeedDetail.route:
+              //   builder = (BuildContext _) {
+              //     final id = (settings.arguments as Map)['id'];
+              //     return FeedDetail(
+              //       feedId: id,
+              //     );
+              //   };
+              //   break;
+              default:
+                builder = (BuildContext _) => HomeFeeds(_navbarNotifier);
+            }
+            return MaterialPageRoute(builder: builder, settings: settings);
+          }),
+    );
+  }
+}
+
+class ProfileMenu extends StatelessWidget {
+  const ProfileMenu({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData(colorScheme: Theme.of(context).colorScheme.copyWith(primary: colors[2])),
+      child: Navigator(
+          key: profileKey,
+          initialRoute: '/',
+          onGenerateRoute: (RouteSettings settings) {
+            WidgetBuilder builder;
+            switch (settings.name) {
+              case '/':
+                builder = (BuildContext _) => const ProfilePage();
+                break;
+              // case ProfileEdit.route:
+              //   builder = (BuildContext _) => const ProfileEdit();
+              //   break;
+              default:
+                builder = (BuildContext _) => const ProfilePage();
+            }
+            return MaterialPageRoute(builder: builder, settings: settings);
+          }),
     );
   }
 }

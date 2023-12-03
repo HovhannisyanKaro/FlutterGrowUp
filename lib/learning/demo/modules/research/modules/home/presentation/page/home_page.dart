@@ -12,7 +12,7 @@ class HomeFeeds extends StatefulWidget {
 
 
   @override
-  State<HomeFeeds> createState() => _HomeFeedsState();
+  State<HomeFeeds> createState() => _HomeFeedsState(_navbarNotifier);
 }
 
 class _HomeFeedsState extends State<HomeFeeds> {
@@ -60,9 +60,10 @@ class _HomeFeedsState extends State<HomeFeeds> {
           return InkWell(
               onTap: () {
                 _navbarNotifier.hideBottomNavBar = false;
-                navigate(context, FeedDetail.route, isRootNavigator: false, arguments: {'id': index.toString()});
+                // navigate(context, FeedDetail.route, isRootNavigator: false, arguments: {'id': index.toString()});
               },
-              child: FeedTile(index: index));
+              child: null);
+              // child: FeedTile(index: index));
         },
       ),
     );
