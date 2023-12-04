@@ -210,13 +210,6 @@ class _NavBarHandlerState extends State<NavBarHandler> with SingleTickerProvider
     fadeAnimation = Tween<double>(begin: 0.4, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn),
     );
-
-    _bottomList = List.generate(
-        _buildBody.length,
-        (index) => BottomNavigationBarItem(
-              icon: Icon(menuItemList[index].iconData),
-              label: menuItemList[index].text,
-            )).toList();
     _controller.forward();
   }
 
