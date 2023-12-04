@@ -100,28 +100,6 @@ class AnimatedNavBar extends StatefulWidget {
 }
 
 class _AnimatedNavBarState extends State<AnimatedNavBar> with SingleTickerProviderStateMixin {
-  @override
-  void didUpdateWidget(covariant AnimatedNavBar oldWidget) {
-    if (widget.model.hideBottomNavBar != isHidden) {
-      if (!isHidden) {
-        _showBottomNavBar();
-      } else {
-        _hideBottomNavBar();
-      }
-      isHidden = !isHidden;
-    }
-    super.didUpdateWidget(oldWidget);
-  }
-
-  void _hideBottomNavBar() {
-    _controller.reverse();
-    return;
-  }
-
-  void _showBottomNavBar() {
-    _controller.forward();
-    return;
-  }
 
   @override
   void initState() {
@@ -132,7 +110,6 @@ class _AnimatedNavBarState extends State<AnimatedNavBar> with SingleTickerProvid
 
   late AnimationController _controller;
   late Animation<double> animation;
-  bool isHidden = false;
 
   @override
   void dispose() {
