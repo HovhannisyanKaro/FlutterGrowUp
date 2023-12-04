@@ -270,6 +270,42 @@ class _NavBarHandlerState extends State<NavBarHandler> with SingleTickerProvider
   }
 }
 
+class HomeNavigationMenu extends StatelessWidget {
+  final GlobalKey<NavigatorState> globalKey;
+
+  const HomeNavigationMenu({required this.globalKey, Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      data: ThemeData(colorScheme: Theme.of(context).colorScheme),
+      child: Navigator(
+          key: globalKey,
+          initialRoute: '/',
+          onGenerateRoute: (RouteSettings settings) {
+            WidgetBuilder builder;
+            switch (settings.name) {
+              case '/':
+                builder = (BuildContext _) => HomeFeeds(_navbarNotifier);
+                break;
+            // case FeedDetail.route:
+            //   builder = (BuildContext _) {
+            //     final id = (settings.arguments as Map)['id'];
+            //     return FeedDetail(
+            //       feedId: id,
+            //     );
+            //   };
+            //   break;
+              default:
+                builder = (BuildContext _) => HomeFeeds(_navbarNotifier);
+            }
+            return MaterialPageRoute(builder: builder, settings: settings);
+          }),
+    );
+  }
+}
+
+
 class ProductsMenu extends StatelessWidget {
   const ProductsMenu({Key? key}) : super(key: key);
 
@@ -308,41 +344,6 @@ class ProductsMenu extends StatelessWidget {
         //   return MaterialPageRoute(builder: builder, settings: settings);
         // },
       ),
-    );
-  }
-}
-
-class HomeNavigationMenu extends StatelessWidget {
-  final GlobalKey<NavigatorState> globalKey;
-
-  const HomeNavigationMenu({required this.globalKey, Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(colorScheme: Theme.of(context).colorScheme),
-      child: Navigator(
-          key: globalKey,
-          initialRoute: '/',
-          onGenerateRoute: (RouteSettings settings) {
-            WidgetBuilder builder;
-            switch (settings.name) {
-              case '/':
-                builder = (BuildContext _) => HomeFeeds(_navbarNotifier);
-                break;
-              // case FeedDetail.route:
-              //   builder = (BuildContext _) {
-              //     final id = (settings.arguments as Map)['id'];
-              //     return FeedDetail(
-              //       feedId: id,
-              //     );
-              //   };
-              //   break;
-              default:
-                builder = (BuildContext _) => HomeFeeds(_navbarNotifier);
-            }
-            return MaterialPageRoute(builder: builder, settings: settings);
-          }),
     );
   }
 }
