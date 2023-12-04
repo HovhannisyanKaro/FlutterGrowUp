@@ -189,10 +189,7 @@ class NavBarHandler extends StatefulWidget {
 }
 
 class _NavBarHandlerState extends State<NavBarHandler> with SingleTickerProviderStateMixin {
-  // final _buildBody = const <Widget>[HomeMenu(), ProductsMenu(), ProfileMenu()];
-  final _buildBody = <Widget>[HomeNavigationMenu(globalKey: homeKey), ProductsMenu(), ProfileMenu()];
-
-  late List<BottomNavigationBarItem> _bottomList = <BottomNavigationBarItem>[];
+  final _buildBody = <Widget>[HomeNavigationMenu(globalKey: homeKey), const ProductsMenu(), const ProfileMenu()];
 
   final menuItemList = const <BottomNavigationBarItemUI>[
     BottomNavigationBarItemUI(Icons.home, 'Home'),
