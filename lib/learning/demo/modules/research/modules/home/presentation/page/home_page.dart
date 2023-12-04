@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:fluttertest/learning/demo/modules/research/modules/base/presentation/navigation/navigation.dart';
 
 import '../../../main/presentation/page/main_page.dart';
+import '../../../question/details/presentation/page/question_details_page.dart';
+import '../widget/question_item_widget.dart';
 
 class HomeFeeds extends StatefulWidget {
   static const String route = '/';
@@ -53,16 +56,20 @@ class _HomeFeedsState extends State<HomeFeeds> {
         title: const Text('Feeds'),
       ),
       body: ListView.builder(
+
         controller: _scrollController,
         itemCount: 30,
         itemBuilder: (context, index) {
-          return InkWell(
-              onTap: () {
-                _navbarNotifier.hideBottomNavBar = false;
-                // navigate(context, FeedDetail.route, isRootNavigator: false, arguments: {'id': index.toString()});
-              },
-              child: null);
-              // child: FeedTile(index: index));
+          return Padding(padding: const EdgeInsets.all(8),
+            child: InkWell(
+                onTap: () {
+                  _navbarNotifier.hideBottomNavBar = false;
+                  // navigate(context, FeedDetail.route, isRootNavigator: false, arguments: {'id': index.toString()});
+                  navigate(context, QuestionDetailPage.route, isRootNavigator: false, arguments: {"id": index.toString()});
+                },
+                // child: null);
+                child: const QuestionItemWidget())
+          );
         },
       ),
     );

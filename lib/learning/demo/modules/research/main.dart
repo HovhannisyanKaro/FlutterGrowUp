@@ -25,6 +25,7 @@ class ResearchApp extends StatelessWidget {
 List<Color> colors = [mediumPurple, Colors.blue, Colors.red];
 const Color mediumPurple = Color.fromRGBO(79, 0, 241, 1.0);
 
+//This is Question Item
 // class FeedTile extends StatelessWidget {
 //   final int index;
 //

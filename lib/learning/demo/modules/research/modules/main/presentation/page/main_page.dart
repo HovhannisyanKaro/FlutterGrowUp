@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertest/learning/demo/modules/research/modules/question/details/presentation/page/question_details_page.dart';
 
 import '../../../../main.dart';
 import '../../../base/presentation/navigation/bottom_navigation_bar.dart';
@@ -100,7 +101,6 @@ class AnimatedNavBar extends StatefulWidget {
 }
 
 class _AnimatedNavBarState extends State<AnimatedNavBar> with SingleTickerProviderStateMixin {
-
   @override
   void initState() {
     super.initState();
@@ -288,14 +288,19 @@ class HomeNavigationMenu extends StatelessWidget {
               case '/':
                 builder = (BuildContext _) => HomeFeeds(_navbarNotifier);
                 break;
-            // case FeedDetail.route:
-            //   builder = (BuildContext _) {
-            //     final id = (settings.arguments as Map)['id'];
-            //     return FeedDetail(
-            //       feedId: id,
-            //     );
-            //   };
-            //   break;
+              // case FeedDetail.route:
+              //   builder = (BuildContext _) {
+              //     final id = (settings.arguments as Map)['id'];
+              //     return FeedDetail(
+              //       feedId: id,
+              //     );
+              //   };
+              //   break;
+              case QuestionDetailPage.route:
+                builder = (BuildContext _) {
+                  final id = (settings.arguments as Map)["id"];
+                  return QuestionDetailPage(feedId: id);
+                };
               default:
                 builder = (BuildContext _) => HomeFeeds(_navbarNotifier);
             }
@@ -304,7 +309,6 @@ class HomeNavigationMenu extends StatelessWidget {
     );
   }
 }
-
 
 class ProductsMenu extends StatelessWidget {
   const ProductsMenu({Key? key}) : super(key: key);
